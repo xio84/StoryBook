@@ -36,6 +36,7 @@ public class Interact : MonoBehaviour
                 nearDist = thisDist;
                 nearest = hitColliders[i].GetComponent<Interactable>();
             }
+            i++;
         }
         if (Input.GetKeyDown(KeyCode.E) && nearest != null)
         {
@@ -43,5 +44,6 @@ public class Interact : MonoBehaviour
             Debug.Log("Interaction!");
             nearest.DoSomething();
         }
+        else if (Input.GetKeyDown(KeyCode.E)) Debug.Log("Nope");
     }
 }
