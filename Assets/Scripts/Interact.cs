@@ -7,43 +7,64 @@ public class Interact : MonoBehaviour
 {
     //private Rigidbody getRigidBody;
     [SerializeField] LayerMask interactLayer;
-    private Interactable[] interactiveObjects;
-    private float[] eachDistance;
-    // Start is called before the first frame update
-    void Start()
+    private List<GameObject> interactiveObjects;
+    //private float[] eachDistance;
+    private GameObject activeInteractable;
+
+    private void Start()
     {
-        //getRigidBody = GetComponent<Rigidbody>();
+        interactiveObjects = (interactiveObjects == null) ? new List<GameObject>() : interactiveObjects;
     }
 
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(this.transform.position,4f);
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(this.transform.position, 4f, interactLayer);
-        int i = 0;
-        Interactable nearest = null;
-        float nearDist = 9999;
-        while (i < hitColliders.Length)
+        if (interactiveObjects.Count>0)
         {
-            float thisDist = (transform.position - hitColliders[i].transform.position).sqrMagnitude;
-            if (thisDist < nearDist)
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                nearDist = thisDist;
-                nearest = hitColliders[i].GetComponent<Interactable>();
+                activeInteractable.GetComponent<Interactable>().DoSomething();
             }
-            i++;
+
+            if (Input.GetKeyDown(KeyCode.R) && interactiveObjects.Count>1)
+            {
+                if (activeInteractable != null)
+                {
+                    activeInteractable.GetComponent<Interactable>().setActive(false);
+                    activeInteractable = interactiveObjects[(interactiveObjects.IndexOf(activeInteractable) + 1) % interactiveObjects.Count];
+                    activeInteractable.GetComponent<Interactable>().setActive(true);
+                }
+            }
         }
-        if (Input.GetKeyDown(KeyCode.E) && nearest != null)
+        
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Interactable"))
         {
-            // nearest.DoSomething();
-            Debug.Log("Interaction!");
-            nearest.DoSomething();
+            interactiveObjects.Add(other.gameObject);
+            if (activeInteractable == null )
+            {
+                activeInteractable = interactiveObjects[0];
+                activeInteractable.GetComponent<Interactable>().setActive(true);
+            }
         }
-        else if (Input.GetKeyDown(KeyCode.E)) Debug.Log("Nope");
+        
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Interactable"))
+        {
+            interactiveObjects.Remove(other.gameObject);
+            if (other.gameObject == activeInteractable)
+            {
+                other.gameObject.GetComponent<Interactable>().setActive(false);
+                if (interactiveObjects.Count>0)
+                {
+                    activeInteractable = interactiveObjects[0];
+                    activeInteractable.GetComponent<Interactable>().setActive(true);
+                }else activeInteractable = null;
+            }
+        }
     }
 }

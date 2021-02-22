@@ -4,15 +4,26 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-    public float radius = 3f;
+    public bool isActive;
+    [SerializeField] private GameObject InteractCanvas;
 
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, radius);
-    }
-    public virtual void DoSomething()
+    public void DoSomething()
     {
         Debug.Log(this.name);
+    }
+
+    public void setActive(bool activ)
+    {
+        Debug.Log(activ);
+        isActive = activ;
+        if (isActive)
+        {
+            Debug.Log("Active");
+            Instantiate(InteractCanvas, this.transform);
+        }
+        else
+        {
+            Destroy(this.gameObject.transform.GetChild(0).gameObject);
+        }
     }
 }
