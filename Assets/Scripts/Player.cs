@@ -25,35 +25,51 @@ public class Player : MonoBehaviour
     private Rigidbody getRigidbody = null;
     //private int superJumpsRemaining;
     private int jumpLeft;
+    private bool canMove;
+
+    // Keypad Canvas Object
+    public Canvas CanvasObject;
 
     // Start is called before the first frame update
     void Start()
     {
         getRigidbody = GetComponent<Rigidbody>();
+
+        CanvasObject.enabled = false;
+        canMove = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        jumpPressedRememberTime -= Time.deltaTime;
-        groundRememberTime -= Time.deltaTime;
-        
-        if (Physics.OverlapSphere(groundCheckTransform.position,0.3f,playerMask).Length>0)
+        if (canMove)
         {
-            groundRememberTime = groundRememberPeriod;
-            jumpLeft = 1;
+            horizontalInput = Input.GetAxisRaw("Horizontal");
+            jumpPressedRememberTime -= Time.deltaTime;
+            groundRememberTime -= Time.deltaTime;
+
+            if (Physics.OverlapSphere(groundCheckTransform.position, 0.3f, playerMask).Length > 0)
+            {
+                groundRememberTime = groundRememberPeriod;
+                jumpLeft = 1;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                jumpPressedRememberTime = jumpPressedRememberPeriod;
+            }
+
+            //if (Input.GetKeyUp(KeyCode.Space))
+            //{
+            //    jumpKeyUp = true;
+            //}
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.R))
         {
-            jumpPressedRememberTime = jumpPressedRememberPeriod;
+            CanvasObject.enabled = !CanvasObject.enabled;
+            canMove = !canMove;
         }
-
-        //if (Input.GetKeyUp(KeyCode.Space))
-        //{
-        //    jumpKeyUp = true;
-        //}
     }
 
     // FixedUpdate is called once every physics update
