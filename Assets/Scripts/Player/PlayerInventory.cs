@@ -37,9 +37,10 @@ public class PlayerInventory : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Mathf.Abs(cursorDelta - cursor) >= 1.0f)
+        if (Mathf.Abs(cursorDelta - cursor) >= scrollSensitivity)
         {
             Scroll();
+            cursorDelta = cursor;
         }
 
         if (useItem)

@@ -10,24 +10,28 @@ public class InventoryUI : MonoBehaviour
     private RectTransform cursRect;
     private bool show = false;
     private float cursorStart;
+    private int cursorLocal;
+    private float startPos;
+    private float margin;
 
     public GameObject placeHolder;
     public GameObject selector;
     public float timeToFade;
     public float fadeSpeed = 1;
     public float fadeTime = 5;
-    public float beginning = -230;
-    public float margin = 80;
     // Start is called before the first frame update
     void Start()
     {
         objPics = new List<GameObject>();
         rectTransform = GetComponent<RectTransform>();
-        rectTransform.anchoredPosition = new Vector2(0, 180);
+        startPos = rectTransform.anchoredPosition.y;
 
         cursRect = selector.GetComponent<RectTransform>();
         cursorStart = cursRect.anchoredPosition.x;
         selector.SetActive(false);
+        show = false;
+        timeToFade = 0;
+        margin = cursRect.rect.width;
     }
 
     // Update is called once per frame
@@ -35,20 +39,19 @@ public class InventoryUI : MonoBehaviour
     {
         Vector2 pos = rectTransform.anchoredPosition;
         // Fade in UI
-        if (show && pos.y > 80)
+        if (show && pos.y > startPos)
         {
             rectTransform.anchoredPosition = new Vector2(0, pos.y - (Time.deltaTime * fadeSpeed));
         } 
         // Wait until fade
-        else if (pos.y <= 80 && timeToFade > 0)
+        else if (pos.y <= startPos && timeToFade > 0)
         {
             show = false;
-            rectTransform.anchoredPosition = new Vector2(0, 80);
-            show = false;
+            rectTransform.anchoredPosition = new Vector2(0, startPos);
             timeToFade -= Time.deltaTime;
         }
         // Fade out UI
-        else if (pos.y < 180 && timeToFade <= 0)
+        else if (pos.y < startPos + rectTransform.rect.height && timeToFade <= 0)
         {
             rectTransform.anchoredPosition = new Vector2(0, pos.y + (Time.deltaTime * fadeSpeed));
         }
@@ -57,7 +60,7 @@ public class InventoryUI : MonoBehaviour
     // Show UI
     public void UpdateInventory(List<Sprite> pics)
     {
-        float b = beginning;
+        float b = cursorStart;
         foreach (GameObject obj in objPics)
         {
             Destroy(obj);
@@ -79,7 +82,7 @@ public class InventoryUI : MonoBehaviour
         if (objPics.Count > 0)
         {
             selector.SetActive(true);
-            cursRect.anchoredPosition = new Vector2(cursorStart, 0);
+            cursRect.anchoredPosition = new Vector2(cursorStart + ((margin + 10) * cursorLocal), 0);
         }
         else
         {
@@ -92,8 +95,10 @@ public class InventoryUI : MonoBehaviour
     // Scroll through inventory
     public void Scroll(int cursor)
     {
+        cursorLocal = cursor;
         cursRect.anchoredPosition = new Vector2(cursorStart + ((margin + 10) * cursor), 0);
         timeToFade = fadeTime;
         show = true;
+        Debug.Log("Cursing...");
     }
 }
