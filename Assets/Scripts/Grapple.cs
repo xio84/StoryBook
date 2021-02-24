@@ -78,7 +78,7 @@ public class Grapple : MonoBehaviour
 
     private void startGrapple( Vector3 a)
     {
-        Debug.Log("SHOT");
+        //Debug.Log("SHOT");
         RaycastHit hit;
         if (Physics.Raycast(getRigidbody.position, (new Vector3(a.x,a.y,0) - getRigidbody.position).normalized, out hit, maxDistance, grabAble))
         {
@@ -87,13 +87,13 @@ public class Grapple : MonoBehaviour
             joint = gameObject.AddComponent<SpringJoint>();
             joint.autoConfigureConnectedAnchor = false;
             joint.enableCollision = true;
-            Debug.Log("Step 1");
+            //Debug.Log("Step 1");
             if (conBody != null)
             {
                 joint.connectedBody = conBody;
                 grapplePoint = hit.point - conBody.position;
                 distanceFromPoint = Vector3.Distance(conBody.rotation * grapplePoint + conBody.position, getRigidbody.position);
-                Debug.Log("Step 2");
+                //Debug.Log("Step 2");
             }else distanceFromPoint = Vector3.Distance(grapplePoint, getRigidbody.position);
             joint.connectedAnchor = grapplePoint;
             joint.maxDistance = distanceFromPoint*0.8f;
@@ -105,7 +105,7 @@ public class Grapple : MonoBehaviour
             isGrappling = true;
             lr.enabled = true;
 
-            Debug.Log("Step 3");
+            //Debug.Log("Step 3");
         }
     }
 

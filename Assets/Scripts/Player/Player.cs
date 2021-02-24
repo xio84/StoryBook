@@ -112,13 +112,4 @@ public class Player : MonoBehaviour
         //    jumpKeyUp = false;
         //}
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject.layer == 9)
-        {
-            Destroy(other.gameObject);
-            //superJumpsRemaining++;
-        }
-    }
 }
