@@ -23,7 +23,6 @@ public class ScanVision : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            Debug.Log("SCAN!");
             scanToggle = !scanToggle;
             if (scanToggle)
             {

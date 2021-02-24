@@ -5,34 +5,24 @@ using UnityEngine;
 
 public class Interact : MonoBehaviour
 {
-    //private Rigidbody getRigidBody;
     [SerializeField] LayerMask interactLayer;
     private List<GameObject> interactiveObjects;
-    //private float[] eachDistance;
     private GameObject activeInteractable;
+    
 
     private void Start()
     {
         interactiveObjects = (interactiveObjects == null) ? new List<GameObject>() : interactiveObjects;
     }
-
-    void Update()
+    private void Update()
     {
-        if (interactiveObjects.Count>0)
+        if (Input.GetKeyDown(KeyCode.R) && interactiveObjects.Count>1)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (activeInteractable != null)
             {
-                activeInteractable.GetComponent<Interactable>().DoSomething();
-            }
-
-            if (Input.GetKeyDown(KeyCode.R) && interactiveObjects.Count>1)
-            {
-                if (activeInteractable != null)
-                {
-                    activeInteractable.GetComponent<Interactable>().setActive(false);
-                    activeInteractable = interactiveObjects[(interactiveObjects.IndexOf(activeInteractable) + 1) % interactiveObjects.Count];
-                    activeInteractable.GetComponent<Interactable>().setActive(true);
-                }
+                activeInteractable.GetComponent<Interactable>().setInactive();
+                activeInteractable = interactiveObjects[(interactiveObjects.IndexOf(activeInteractable) + 1) % interactiveObjects.Count];
+                activeInteractable.GetComponent<Interactable>().setActive();
             }
         }
         
@@ -46,11 +36,11 @@ public class Interact : MonoBehaviour
             if (activeInteractable == null )
             {
                 activeInteractable = interactiveObjects[0];
-                activeInteractable.GetComponent<Interactable>().setActive(true);
+                activeInteractable.GetComponent<Interactable>().setActive();
             }
         }
-        
     }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Interactable"))
@@ -58,11 +48,11 @@ public class Interact : MonoBehaviour
             interactiveObjects.Remove(other.gameObject);
             if (other.gameObject == activeInteractable)
             {
-                other.gameObject.GetComponent<Interactable>().setActive(false);
+                other.gameObject.GetComponent<Interactable>().setInactive();
                 if (interactiveObjects.Count>0)
                 {
                     activeInteractable = interactiveObjects[0];
-                    activeInteractable.GetComponent<Interactable>().setActive(true);
+                    activeInteractable.GetComponent<Interactable>().setActive();
                 }else activeInteractable = null;
             }
         }
