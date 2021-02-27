@@ -44,4 +44,26 @@ public class InventoryObjects : MonoBehaviour
             }
         }
     }
+
+    public void giveItem()
+    {
+        // Get player game object
+        GameObject player = FindObjectOfType<Player>().GetComponent<Player>().gameObject;
+        PlayerInventory inv = player.GetComponent<PlayerInventory>();
+        if (inv)
+        {
+            if (inv.ids.Count < 9)
+            {
+                bool success = inv.AddObject(id, picture);
+                if (success)
+                {
+                    Destroy(gameObject);
+                }
+                else
+                {
+                    Debug.Log("Inventory Full");
+                }
+            }
+        }
+    }
 }

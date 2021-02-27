@@ -7,14 +7,17 @@ public class DialogueManager : MonoBehaviour
 {
     public Text nameText;
     public Text dialogueText;
+    public Text choice1Text;
+    public Text choice2Text;
     public Animator animator;
+    public Sentence currSentence;
 
-    private Queue<string> sentences;
+    private Queue<Sentence> sentences;
 
     // Start is called before the first frame update
     void Start()
     {
-        sentences = new Queue<string>();
+        sentences = new Queue<Sentence>();
     }
 
     public void StartDialogue(Dialogue dialogue)
@@ -24,7 +27,7 @@ public class DialogueManager : MonoBehaviour
 
         sentences.Clear();
 
-        foreach (string sentence in dialogue.sentences)
+        foreach (Sentence sentence in dialogue.sentences)
         {
             sentences.Enqueue(sentence);
         }
@@ -40,9 +43,21 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
-        string sentence = sentences.Dequeue();
+        Sentence sentence = sentences.Dequeue();
+        currSentence = sentence;
         StopAllCoroutines();
-        StartCoroutine(TypeSentence(sentence));
+        StartCoroutine(TypeSentence(sentence.text));
+
+        if (sentence.hasChoices)
+        {
+            StartCoroutine(TypeChoice1(sentence.choices[0]));
+            StartCoroutine(TypeChoice2(sentence.choices[1]));
+        }
+        else
+        {
+            choice1Text.text = "";
+            choice2Text.text = "";
+        }
     }
 
     IEnumerator TypeSentence (string sentence)
@@ -51,6 +66,25 @@ public class DialogueManager : MonoBehaviour
         foreach (char letter in sentence.ToCharArray())
         {
             dialogueText.text += letter;
+            yield return null;
+        }
+    }
+
+    IEnumerator TypeChoice1(string choice1)
+    {
+        choice1Text.text = "";
+        foreach (char letter in choice1.ToCharArray())
+        {
+            choice1Text.text += letter;
+            yield return null;
+        }
+    }
+    IEnumerator TypeChoice2(string choice2)
+    {
+        choice2Text.text = "";
+        foreach (char letter in choice2.ToCharArray())
+        {
+            choice2Text.text += letter;
             yield return null;
         }
     }

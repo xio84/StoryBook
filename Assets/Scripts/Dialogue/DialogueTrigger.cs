@@ -10,4 +10,14 @@ public class DialogueTrigger : MonoBehaviour
     {
         FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
     }
+    public void Choice1()
+    {
+        //FindObjectOfType<DialogueManager>().currSentence.itemId;
+        FindObjectOfType<DialogueManager>().DisplayNextSentence();
+    }
+
+    public void Choice2()
+    {
+        FindObjectOfType<DialogueManager>().DisplayNextSentence();
+    }
 }
