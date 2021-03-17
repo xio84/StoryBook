@@ -3898,7 +3898,7 @@ Transform:
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7945471876362085515, guid: 77529f931e3fd214a9b4545468fdda15,
     type: 3}
-  m_PrefabInstance: {fileID: 867192637}
+  m_PrefabInstance: {fileID: 1369614592433056374}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -5145,7 +5145,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-<<<<<<< HEAD
   m_SourcePrefab: {fileID: 100100000, guid: 77529f931e3fd214a9b4545468fdda15, type: 3}
 --- !u!1001 &9211954599615840174
 PrefabInstance:
@@ -5221,6 +5220,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e7ee2ad5819e9145aee346d7942b1a9, type: 3}
-=======
-  m_SourcePrefab: {fileID: 100100000, guid: aefda4a1c24d74d489140a030ad9d549, type: 3}
->>>>>>> master
