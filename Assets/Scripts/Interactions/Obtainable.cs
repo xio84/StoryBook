@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InventoryObjects : MonoBehaviour
+public class Obtainable : MonoBehaviour, IObjects
 {
     private Rigidbody m_Rigidbody;
     public string id;
     public string desc;
-    [SerializeField] Sprite picture;
+    [SerializeField] public Sprite picture;
     public int turnSpeed = 1;
     // Start is called before the first frame update
     void Start()
@@ -24,20 +24,20 @@ public class InventoryObjects : MonoBehaviour
         m_Rigidbody.MoveRotation(turnRotation * m_Rigidbody.rotation);
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void Interact(GameObject player)
     {
         // Get player game object
-        GameObject player = other.gameObject;
         PlayerInventory inv = player.GetComponent<PlayerInventory>();
         if (inv)
         {
-            if (inv.ids.Count < 9)
+            if (inv.objects.Count < 9)
             {
-                bool success = inv.AddObject(id, picture);
+                bool success = inv.AddObject(this);
                 if (success)
                 {
-                    Destroy(gameObject);
-                } else
+                    gameObject.SetActive(false);
+                }
+                else
                 {
                     Debug.Log("Inventory Full");
                 }

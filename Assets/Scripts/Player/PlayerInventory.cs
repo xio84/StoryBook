@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,24 +8,31 @@ public class PlayerInventory : MonoBehaviour
     private int cursor;
     private float cursorDelta;
     private bool useItem;
+    private bool examineItem;
+    private bool stopExamine;
+    private bool interactObject;
+    private bool examining;
     private InventoryUI iUI;
+    private Rigidbody rigidBody;
 
     public LayerMask interactable;
     public GameObject inventoryUI;
-    public List<string> ids;
-    public List<Sprite> pics;
+    public List<Obtainable> objects;
     public int maxInv = 7;
     public float scrollSensitivity = 1;
     public float interactRadius = 4;
-  
+
+    public bool Examining { get => examining; set => examining = value; }
+
     // Start is called before the first frame update
     void Start()
     {
         cursor = 0;
         cursorDelta = cursor;
-        ids = new List<string>();
-        pics = new List<Sprite>();
+        objects = new List<Obtainable>();
         iUI = inventoryUI.GetComponent<InventoryUI>();
+        rigidBody = GetComponent<Rigidbody>();
+        Examining = false;
     }
 
     // Update is called once per frame
@@ -32,28 +40,70 @@ public class PlayerInventory : MonoBehaviour
     {
         cursorDelta += Input.GetAxis("Mouse ScrollWheel");
         // Listen for key
-        useItem = Input.GetKeyUp(KeyCode.F);
+        useItem = Input.GetKeyDown(KeyCode.F);
+        examineItem = Input.GetKeyDown(KeyCode.C);
+        stopExamine = Input.GetKeyDown(KeyCode.Escape);
+        interactObject = Input.GetKeyDown(KeyCode.E);
     }
 
-    private void FixedUpdate()
+    private void FixedUpdate() // TODO find alternative to slow fixedupdate
     {
-        if (Mathf.Abs(cursorDelta - cursor) >= 1.0f)
+        if (Mathf.Abs(cursorDelta - cursor) >= scrollSensitivity && !Examining)
         {
             Scroll();
+            cursorDelta = cursor;
         }
 
-        if (useItem)
+        if (useItem && !Examining)
         {
-            Use();
+            if (objects.Count > 0)
+            {
+                Use();
+            }
+        }
+        
+        if (interactObject && !Examining)
+        {
+            Debug.Log("Collecting...");
+            Interact();
+        }
+
+        if (!Examining && examineItem && objects.Count > 0)
+        {
+            Examining = true;
+            // Player can't move while examining items
+            rigidBody.isKinematic = true;
+            Obtainable oItem = objects[cursor];
+            Examinable xItem = oItem.GetComponent<Examinable>();
+            if (xItem)
+            {
+                xItem.StartExamine();
+            } else
+            {
+                Examining = false;
+                rigidBody.isKinematic = false;
+            }
+        } else if (stopExamine && Examining)
+        {
+            Examining = false;
+            rigidBody.isKinematic = false;
+            Obtainable oItem = objects[cursor];
+            Examinable xItem = oItem.GetComponent<Examinable>();
+            if (xItem)
+            {
+                xItem.EndExamine();
+            } else
+            {
+                Debug.LogError("No Examinables found!");
+            }
         }
     }
 
     // Adds item to inventory
-    public bool AddObject(string id, Sprite pic)
+    public bool AddObject(Obtainable obj)
     {
-        if (ids.Count > maxInv) return false;
-        ids.Add(id);
-        pics.Add(pic);
+        if (objects.Count > maxInv) return false;
+        objects.Add(obj);
         Refresh();
         return true;
     }
@@ -63,7 +113,7 @@ public class PlayerInventory : MonoBehaviour
     {
         if (iUI)
         {
-            iUI.UpdateInventory(pics);
+            iUI.UpdateInventory(objects);
         }
         else
         {
@@ -74,9 +124,9 @@ public class PlayerInventory : MonoBehaviour
     // Scroll inventory
     public void Scroll()
     {
-        if (ids.Count > 0)
+        if (objects.Count > 0)
         {
-            cursor = Mathf.Abs(Mathf.RoundToInt(cursorDelta) % ids.Count);
+            cursor = Mathf.Abs(Mathf.RoundToInt(cursorDelta) % objects.Count);
             iUI.Scroll(cursor);
         }
     }
@@ -84,19 +134,54 @@ public class PlayerInventory : MonoBehaviour
     // Use inventory object
     public void Use()
     {
+        // Get all objects, ordered by proximity
         Collider[] targets = Physics.OverlapSphere(transform.position, interactRadius, interactable);
-        int i = 0; bool found = false;
-        while (i < targets.Length && !found)
+        if (targets.Length > 0)
         {
-            IInteractables iObj = targets[i].GetComponent<IInteractables>();
-            if (iObj.Interact(ids[cursor])) found = true;
+            Collider[] orderedByProximity = targets.OrderBy(c => Vector3.Distance(transform.position, c.transform.position)).ToArray();
+
+            int i = 0; bool found = false;
+            IInteractables iObj;
+            while (i < orderedByProximity.Length && !found)
+            {
+                iObj = orderedByProximity[i].GetComponent<IInteractables>();
+                if (iObj != null)
+                {
+                    if (iObj.Interact(objects[cursor].id)) found = true;
+                }
+                i++;
+            }
+            if (found)
+            {
+                objects.RemoveAt(cursor);
+                Refresh();
+            }
+        }
+    }
+
+    // Interact with environment object
+    public void Interact()
+    {
+        // Get all objects, ordered by proximity
+        Collider[] targets = Physics.OverlapSphere(transform.position, interactRadius, interactable);
+        Collider[] orderedByProximity = targets.OrderBy(c => Vector3.Distance(transform.position, c.transform.position)).ToArray();
+
+        int i = 0; bool found = false;
+        IObjects obj;
+        while (i < orderedByProximity.Length && !found)
+        {
+            Debug.Log(orderedByProximity[i].ToString());
+            obj = orderedByProximity[i].GetComponent<IObjects>();
+            if (obj != null)
+            {
+                found = true;
+                obj.Interact(this.gameObject);
+            }
             i++;
         }
-        if (found)
+        if (!found)
         {
-            ids.RemoveAt(cursor);
-            pics.RemoveAt(cursor);
-            Refresh();
+            Debug.Log("No obtainables!");
         }
     }
 }
