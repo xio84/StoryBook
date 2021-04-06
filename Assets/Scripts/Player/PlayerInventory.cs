@@ -44,6 +44,12 @@ public class PlayerInventory : MonoBehaviour
         examineItem = Input.GetKeyDown(KeyCode.C);
         stopExamine = Input.GetKeyDown(KeyCode.Escape);
         interactObject = Input.GetKeyDown(KeyCode.E);
+
+        if (interactObject && !Examining)
+        {
+            Debug.Log("Collecting...");
+            Interact();
+        }
     }
 
     private void FixedUpdate() // TODO find alternative to slow fixedupdate
@@ -60,12 +66,6 @@ public class PlayerInventory : MonoBehaviour
             {
                 Use();
             }
-        }
-        
-        if (interactObject && !Examining)
-        {
-            Debug.Log("Collecting...");
-            Interact();
         }
 
         if (!Examining && examineItem && objects.Count > 0)

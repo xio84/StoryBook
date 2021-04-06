@@ -20,23 +20,30 @@ public class Player : MonoBehaviour
     //[SerializeField] private float fHorizontalDampingAir = 0.1f;
     [SerializeField] private float fHorizontalDampingBasic = 0.5f;
 
+    private Animator animator;
+
     //private bool jumpKeyUp;
     private float horizontalInput, groundRememberTime,jumpPressedRememberTime;
     private Rigidbody getRigidbody = null;
     //private int superJumpsRemaining;
     private int jumpLeft;
     private bool canMove;
+    private bool faceRight;
 
     // Keypad Canvas Object
     public Canvas CanvasObject;
+    public GameObject m_renderer;
 
     // Start is called before the first frame update
     void Start()
     {
         getRigidbody = GetComponent<Rigidbody>();
 
+        animator = GetComponent<Animator>();
+
         CanvasObject.enabled = false;
         canMove = true;
+        faceRight = true;
     }
 
     // Update is called once per frame
@@ -77,6 +84,25 @@ public class Player : MonoBehaviour
     {
         float fHorizontalVelocity = getRigidbody.velocity.x;
         if ((Mathf.Sign(horizontalInput)) != Mathf.Sign(fHorizontalVelocity)|| Mathf.Abs(fHorizontalVelocity)<maxSpeed) fHorizontalVelocity += horizontalInput*accModifier;
+
+        Quaternion rot = m_renderer.transform.localRotation;
+        rot.y += 180;
+        rot.y %= 360;
+        Vector3 rot3 = new Vector3(0, 180, 180);
+        Vector3 ls = m_renderer.transform.localScale;
+        ls.x *= -1;
+        if (fHorizontalVelocity < 0 && faceRight)
+        {
+            m_renderer.transform.Rotate(rot3);
+            faceRight = !faceRight;
+        }
+        else if (fHorizontalVelocity > 0 && !faceRight)
+        {
+            m_renderer.transform.Rotate(rot3);
+            faceRight = !faceRight;
+        }
+
+        animator.SetFloat("Speed", Mathf.Abs(fHorizontalVelocity));
 
         if (!gameObject.GetComponent<Grapple>().isGrappling)
         {
