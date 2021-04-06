@@ -6,7 +6,6 @@ using UnityEngine;
 public class PlayerInventory : MonoBehaviour
 {
     private int cursor;
-    private float cursorDelta;
     private bool useItem;
     private bool examineItem;
     private bool stopExamine;
@@ -18,7 +17,7 @@ public class PlayerInventory : MonoBehaviour
     public LayerMask interactable;
     public GameObject inventoryUI;
     public List<Obtainable> objects;
-    public int maxInv = 7;
+    public int maxInv = 5;
     public float scrollSensitivity = 1;
     public float interactRadius = 4;
 
@@ -27,8 +26,6 @@ public class PlayerInventory : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        cursor = 0;
-        cursorDelta = cursor;
         objects = new List<Obtainable>();
         iUI = inventoryUI.GetComponent<InventoryUI>();
         rigidBody = GetComponent<Rigidbody>();
@@ -38,7 +35,6 @@ public class PlayerInventory : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        cursorDelta += Input.GetAxis("Mouse ScrollWheel");
         // Listen for key
         useItem = Input.GetKeyDown(KeyCode.F);
         examineItem = Input.GetKeyDown(KeyCode.C);
@@ -50,15 +46,6 @@ public class PlayerInventory : MonoBehaviour
             Debug.Log("Collecting...");
             Interact();
         }
-    }
-
-    private void FixedUpdate() // TODO find alternative to slow fixedupdate
-    {
-        if (Mathf.Abs(cursorDelta - cursor) >= scrollSensitivity && !Examining)
-        {
-            Scroll();
-            cursorDelta = cursor;
-        }
 
         if (useItem && !Examining)
         {
@@ -67,6 +54,10 @@ public class PlayerInventory : MonoBehaviour
                 Use();
             }
         }
+    }
+
+    private void FixedUpdate() // TODO find alternative to slow fixedupdate
+    {
 
         if (!Examining && examineItem && objects.Count > 0)
         {
@@ -118,16 +109,6 @@ public class PlayerInventory : MonoBehaviour
         else
         {
             Debug.LogError("No Inventory UI!");
-        }
-    }
-
-    // Scroll inventory
-    public void Scroll()
-    {
-        if (objects.Count > 0)
-        {
-            cursor = Mathf.Abs(Mathf.RoundToInt(cursorDelta) % objects.Count);
-            iUI.Scroll(cursor);
         }
     }
 
@@ -183,5 +164,11 @@ public class PlayerInventory : MonoBehaviour
         {
             Debug.Log("No obtainables!");
         }
+    }
+
+    // Switch Inventory
+    public void Switch(int curs)
+    {
+        cursor = curs;
     }
 }

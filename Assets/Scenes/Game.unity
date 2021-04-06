@@ -809,12 +809,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30bcbc61b4ec30448a3ba1ae38d83d97, type: 3}
---- !u!1 &605234310 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7770885144245116577, guid: 22b64d1cafffd954d94666b30aeef144,
-    type: 3}
-  m_PrefabInstance: {fileID: 7770885143639898663}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &639652421 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5668040725293427200, guid: 30bcbc61b4ec30448a3ba1ae38d83d97,
@@ -2870,7 +2864,7 @@ PrefabInstance:
         type: 3}
       propertyPath: inventoryUI
       value: 
-      objectReference: {fileID: 605234310}
+      objectReference: {fileID: 0}
     - target: {fileID: 2319220724843975558, guid: eef9584183a76684a829169ded73d94c,
         type: 3}
       propertyPath: ppVol
@@ -3169,5 +3163,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 105294623}
+    - target: {fileID: 8025058320773433211, guid: 22b64d1cafffd954d94666b30aeef144,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22b64d1cafffd954d94666b30aeef144, type: 3}

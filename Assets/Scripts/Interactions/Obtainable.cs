@@ -30,7 +30,7 @@ public class Obtainable : MonoBehaviour, IObjects
         PlayerInventory inv = player.GetComponent<PlayerInventory>();
         if (inv)
         {
-            if (inv.objects.Count < 9)
+            if (inv.objects.Count < 5)
             {
                 bool success = inv.AddObject(this);
                 if (success)

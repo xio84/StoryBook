@@ -81,7 +81,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: yellowKey
   desc: Some Key
-  picture: {fileID: 21300000, guid: 9f0df4375660c77478296db6bd6b1241, type: 3}
+  picture: {fileID: 21300000, guid: 86223f21876ef95449fa7dafdb9438c2, type: 3}
   turnSpeed: 50
 --- !u!1 &1962400139492955227
 GameObject:
