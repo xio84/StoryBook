@@ -8,6 +8,7 @@ public class PressurePuzzle : MonoBehaviour
     [SerializeField] GameObject door;
     private string key = "231";
     private string answer = "";
+    public bool isSequence;
 
     public void addAnswer(string str)
     {
@@ -37,15 +38,25 @@ public class PressurePuzzle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (key == answer)
+        if (isSequence)
         {
-            door.transform.position = new Vector3(door.transform.position.x, door.transform.position.y + (Time.deltaTime * 5));
+            if (key == answer)
+            {
+                door.transform.position = new Vector3(door.transform.position.x, door.transform.position.y + (Time.deltaTime * 5));
+            }
+            else
+            {
+                if (answer.Length == 3 && key != answer)
+                {
+                    Debug.Log("FAILED!!");
+                }
+            }
         }
         else
         {
-            if (answer.Length == 3 && key != answer)
+            if (answer.Length == 3)
             {
-                Debug.Log("FAILED!!");
+                door.transform.position = new Vector3(door.transform.position.x, door.transform.position.y + (Time.deltaTime * 5));
             }
         }
     }
