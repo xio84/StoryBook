@@ -18,6 +18,7 @@ public class Grapple : MonoBehaviour
     private float distanceFromPoint;
 
     public bool isGrappling;
+    public Camera cam;
 
     // Start is called before the first frame update
     void Start()

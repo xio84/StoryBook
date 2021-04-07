@@ -41,6 +41,15 @@ public class InventoryUI : MonoBehaviour
         int i = 0;
         inventory = obj;
 
+        // Reset all images
+        foreach (Image img in invImages)
+        {
+            img.color = new Color(0, 0, 0, 0);
+        }
+
+        // Reset dedscription text
+        description.text = "";
+
         // Update all invImages
         foreach (Obtainable o in inventory)
         {
