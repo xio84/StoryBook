@@ -374,8 +374,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 368.2, y: 79.5}
-  m_SizeDelta: {x: -1429.6001, y: -891}
+  m_AnchoredPosition: {x: 369.74994, y: 67.750015}
+  m_SizeDelta: {x: -1432.7, y: -830.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3825724371434876723
 CanvasRenderer:
@@ -398,14 +398,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.7254902, g: 0.6392157, b: 0.52156866, a: 1}
   m_RaycastTarget: 0
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 997a43b767814dd0a7642ec9b78cba41, type: 3}
+    m_Font: {fileID: 12800000, guid: 4061d7a4a02361a40838d38eaa800aac, type: 3}
     m_FontSize: 38
     m_FontStyle: 0
     m_BestFit: 0
@@ -417,7 +417,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Lalala
+  m_Text: the greatLA
 --- !u!1 &5335192026039865564
 GameObject:
   m_ObjectHideFlags: 0
