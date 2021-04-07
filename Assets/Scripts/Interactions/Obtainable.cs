@@ -7,8 +7,10 @@ public class Obtainable : MonoBehaviour, IObjects
     private Rigidbody m_Rigidbody;
     public string id;
     public string desc;
+    public string oName;
+    public string location;
     [SerializeField] public Sprite picture;
-    public int turnSpeed = 1;
+    public int turnSpeed;
     // Start is called before the first frame update
     void Start()
     {
