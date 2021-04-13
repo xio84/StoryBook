@@ -10,23 +10,36 @@ public class InventoryUI : MonoBehaviour
     public List<Image> invImages;
     public List<Image> partImages;
     public Text description;
-
+    public Text textName;
+    public Text location;
 
     // Start is called before the first frame update
     void Start()
     {
 
-        foreach (Image i in invImages)
+        foreach (Image img in invImages)
         {
-            i.color = new Color(0, 0, 0, 0);
+            img.color = new Color(0, 0, 0, 0);
         }
 
-        foreach (Image i in partImages)
+        foreach (Image img in partImages)
         {
-            i.color = new Color(0, 0, 0, 0);
+            img.color = new Color(0, 0, 0, 0);
         }
 
         description.text = "";
+        location.text = "";
+        textName.text = "";
+
+        int i = 0;
+        // Update all invImages
+        foreach (Obtainable o in inventory)
+        {
+            Image image = invImages[i];
+            image.sprite = o.picture;
+            image.color = new Color(255, 255, 255, 255);
+            i++;
+        }
     }
 
     // Update is called once per frame
@@ -49,6 +62,8 @@ public class InventoryUI : MonoBehaviour
 
         // Reset dedscription text
         description.text = "";
+        location.text = "";
+        textName.text = "";
 
         // Update all invImages
         foreach (Obtainable o in inventory)
@@ -56,6 +71,7 @@ public class InventoryUI : MonoBehaviour
             Image image = invImages[i];
             image.sprite = o.picture;
             image.color = new Color(255, 255, 255, 255);
+            i++;
         }
 
     }
@@ -67,10 +83,14 @@ public class InventoryUI : MonoBehaviour
         if (cursor < inventory.Count && cursor >= 0)
         {
             description.text = inventory[cursor].desc;
+            textName.text = inventory[cursor].oName;
+            location.text = "Obtained from: " + inventory[cursor].location;
         }
         else
         {
             description.text = "";
+            location.text = "";
+            textName.text = "";
         }
     }
 }
