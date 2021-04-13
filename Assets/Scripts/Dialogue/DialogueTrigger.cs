@@ -4,11 +4,21 @@ using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour
 {
-    public Dialogue dialogue;
+    public Dialogue dialogue_before;
+    public Dialogue dialogue_after;
+    public PressurePuzzle pressurePuzzle;
 
     public void TriggerDialogue()
     {
-        FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
+        if (pressurePuzzle.isOpen)
+        {
+            FindObjectOfType<DialogueManager>().StartDialogue(dialogue_after);
+        }
+        else
+        {
+            FindObjectOfType<DialogueManager>().StartDialogue(dialogue_before);
+        }
+        
     }
     public void Choice1()
     {

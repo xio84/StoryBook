@@ -1466,6 +1466,7 @@ MonoBehaviour:
   doorLift: 10
   door: {fileID: 1487959672}
   isSequence: 1
+  isOpen: 0
 --- !u!1 &705001811
 GameObject:
   m_ObjectHideFlags: 0
@@ -2488,31 +2489,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 408b11a77fb2c874f85b4a1137ea7118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue:
-    name: Arthur Morgan
+  dialogue_before:
+    name: Tower Keeper
     sentences:
-    - text: Hey, Whatsup!!
+    - text: You haven't watered the plants?
       giveItem: 0
       hasChoices: 0
       itemId: 
       choices: []
-    - text: Nice to meet you!
+    - text: Then scram!!
       giveItem: 0
       hasChoices: 0
       itemId: 
       choices: []
-    - text: You want a blue key?
+  dialogue_after:
+    name: Tower Keeper
+    sentences:
+    - text: You watered the plants?
       giveItem: 0
-      hasChoices: 1
-      itemId: 
-      choices:
-      - Uhmm.... Yes.
-      - Heck, No bruh.
-    - text: Have a nice day!
-      giveItem: 1
       hasChoices: 0
-      itemId: blueKey
+      itemId: 
       choices: []
+    - text: Well, thank you! You may proceed.
+      giveItem: 0
+      hasChoices: 0
+      itemId: 
+      choices: []
+  pressurePuzzle: {fileID: 2122324501}
 --- !u!114 &939752658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6139,6 +6142,7 @@ MonoBehaviour:
   doorLift: 10
   door: {fileID: 1080618041}
   isSequence: 0
+  isOpen: 0
 --- !u!4 &2122324502
 Transform:
   m_ObjectHideFlags: 0

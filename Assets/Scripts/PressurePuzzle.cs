@@ -9,6 +9,7 @@ public class PressurePuzzle : MonoBehaviour
     private string key = "231";
     private string answer = "";
     public bool isSequence;
+    public bool isOpen;
 
     public void addAnswer(string str)
     {
@@ -43,6 +44,7 @@ public class PressurePuzzle : MonoBehaviour
             if (key == answer)
             {
                 door.transform.position = new Vector3(door.transform.position.x, door.transform.position.y + (Time.deltaTime * 5));
+                isOpen = true;
             }
             else
             {
@@ -57,6 +59,7 @@ public class PressurePuzzle : MonoBehaviour
             if (answer.Length == 3)
             {
                 door.transform.position = new Vector3(door.transform.position.x, door.transform.position.y + (Time.deltaTime * 5));
+                isOpen = true;
             }
         }
     }

@@ -15,4 +15,13 @@ public class Sentence
     public string itemId;
 
     public string[] choices;
+
+    public Sentence(string _text, bool _giveItem, bool _hasChoices, string _itemId, string[] _choices)
+    {
+        text = _text;
+        giveItem = _giveItem;
+        hasChoices = _hasChoices;
+        itemId = _itemId;
+        choices = _choices;
+    }
 }
