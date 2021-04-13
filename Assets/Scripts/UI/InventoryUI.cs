@@ -17,19 +17,29 @@ public class InventoryUI : MonoBehaviour
     void Start()
     {
 
-        foreach (Image i in invImages)
+        foreach (Image img in invImages)
         {
-            i.color = new Color(0, 0, 0, 0);
+            img.color = new Color(0, 0, 0, 0);
         }
 
-        foreach (Image i in partImages)
+        foreach (Image img in partImages)
         {
-            i.color = new Color(0, 0, 0, 0);
+            img.color = new Color(0, 0, 0, 0);
         }
 
         description.text = "";
         location.text = "";
         textName.text = "";
+
+        int i = 0;
+        // Update all invImages
+        foreach (Obtainable o in inventory)
+        {
+            Image image = invImages[i];
+            image.sprite = o.picture;
+            image.color = new Color(255, 255, 255, 255);
+            i++;
+        }
     }
 
     // Update is called once per frame
@@ -61,6 +71,7 @@ public class InventoryUI : MonoBehaviour
             Image image = invImages[i];
             image.sprite = o.picture;
             image.color = new Color(255, 255, 255, 255);
+            i++;
         }
 
     }
