@@ -9,22 +9,25 @@ public class GameManager : MonoBehaviour
     private PlayerInventory pI;
     private InventoryUI iU;
     private bool iUIshow;
+    private bool pause;
 
     public GameObject Player;
     public GameObject inventoryUI;
+    public GameObject pauseMenu;
     // Start is called before the first frame update
     void Start()
     {
         pI = Player.GetComponent<PlayerInventory>();
         iU = inventoryUI.GetComponent<InventoryUI>();
         iUIshow = false;
+        pause = false;
         CloseInventory();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && !pause)
         {
             if (iUIshow)
             {
@@ -35,7 +38,18 @@ public class GameManager : MonoBehaviour
             }
             iUIshow = !iUIshow;
         }
-        // TODO integrate pause menu with GameManager
+        else if (Input.GetKeyDown(KeyCode.Escape) && !iUIshow)
+        {
+            if (pause)
+            {
+                Pause();
+            }
+            else
+            {
+                Unpause();
+            }
+            pause = !pause;
+        }
     }
 
     public void Death()
@@ -59,5 +73,22 @@ public class GameManager : MonoBehaviour
     {
         inventoryUI.SetActive(true);
         Time.timeScale = 0;
+    }
+
+    public void Pause()
+    {
+        Time.timeScale = 0;
+        pauseMenu.SetActive(true);
+    }
+
+    public void Unpause()
+    {
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1;
+    }
+
+    public void loadMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }
