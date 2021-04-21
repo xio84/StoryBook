@@ -28,7 +28,8 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 300481657}
   m_Father: {fileID: 1823203058}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -64,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 833b5b9d269c5ed43b4096e09b47fe07, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 11856986a2233bb49b1c98c715b08357, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -162,7 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 0
+  - eventID: 4
     callback:
       m_PersistentCalls:
         m_Calls:
@@ -236,14 +237,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: bcc7bdadb388860458ac165870e99a91, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -317,6 +318,84 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+--- !u!1 &300481656
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 300481657}
+  - component: {fileID: 300481659}
+  - component: {fileID: 300481658}
+  m_Layer: 5
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &300481657
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 300481656}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8370624}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -17.2, y: 26.3}
+  m_SizeDelta: {x: 823.7562, y: 136.1868}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &300481659
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 300481656}
+  m_CullTransparentMesh: 0
+--- !u!114 &300481658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 300481656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 5d6d013b4a6049e4a8e49999db6ddefb, type: 3}
+    m_FontSize: 64
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 64
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Save to 'Slot 1'?
 --- !u!1 &836430478
 GameObject:
   m_ObjectHideFlags: 0
@@ -686,7 +765,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 0
+  - eventID: 4
     callback:
       m_PersistentCalls:
         m_Calls:
@@ -789,7 +868,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 0
+  - eventID: 4
     callback:
       m_PersistentCalls:
         m_Calls:
@@ -875,7 +954,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0844ad656d814f744987d281e4ebfb61, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 88edd33f40e43884e97b4f16b35e20a9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -900,6 +979,8 @@ MonoBehaviour:
   high1: {fileID: 21300000, guid: 0844ad656d814f744987d281e4ebfb61, type: 3}
   high2: {fileID: 21300000, guid: 863c86a094a34174a9c806d470bec662, type: 3}
   high3: {fileID: 21300000, guid: d4fd583b5aa044340abbc96e3d16f0f6, type: 3}
+  confirmation: {fileID: 300481658}
+  action: save
 --- !u!1 &1709060949
 GameObject:
   m_ObjectHideFlags: 0
@@ -2631,31 +2712,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 408b11a77fb2c874f85b4a1137ea7118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue:
-    name: Arthur Morgan
-    sentences:
-    - text: Hey, Whatsup!!
-      giveItem: 0
-      hasChoices: 0
-      itemId: 
-      choices: []
-    - text: Nice to meet you!
-      giveItem: 0
-      hasChoices: 0
-      itemId: 
-      choices: []
-    - text: You want a blue key?
-      giveItem: 0
-      hasChoices: 1
-      itemId: 
-      choices:
-      - Uhmm.... Yes.
-      - Heck, No bruh.
-    - text: Have a nice day!
-      giveItem: 1
-      hasChoices: 0
-      itemId: blueKey
-      choices: []
+  dialogue_before:
+    name: 
+    sentences: []
+  dialogue_after:
+    name: 
+    sentences: []
+  pressurePuzzle: {fileID: 0}
 --- !u!1 &7770885142961137137
 GameObject:
   m_ObjectHideFlags: 0
