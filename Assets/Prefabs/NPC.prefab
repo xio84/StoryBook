@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 9211954599071599936}
   - component: {fileID: 9211954599071599939}
   - component: {fileID: 9211954599071599938}
-  - component: {fileID: 563147498}
+  - component: {fileID: 179808635618827216}
+  - component: {fileID: 3563967601626655695}
   m_Layer: 9
   m_Name: NPC
   m_TagString: Untagged
@@ -95,7 +96,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &563147498
+--- !u!114 &179808635618827216
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -104,6 +105,46 @@ MonoBehaviour:
   m_GameObject: {fileID: 9211954599071599943}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae07689cfe77dc14d9be398d11b4b477, type: 3}
+  m_Script: {fileID: 11500000, guid: 408b11a77fb2c874f85b4a1137ea7118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogue_before:
+    name: Tower Keeper
+    sentences:
+    - text: You haven't watered the plants?
+      giveItem: 0
+      hasChoices: 0
+      itemId: 
+      choices: []
+    - text: Then scram!
+      giveItem: 0
+      hasChoices: 0
+      itemId: 
+      choices: []
+  dialogue_after:
+    name: 2
+    sentences:
+    - text: Thanks for watering the plants!
+      giveItem: 0
+      hasChoices: 0
+      itemId: 
+      choices: []
+    - text: You may now proceed.
+      giveItem: 0
+      hasChoices: 0
+      itemId: 
+      choices: []
+  pressurePuzzle: {fileID: 0}
+--- !u!114 &3563967601626655695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9211954599071599943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48c2d8d9fb5b3234ab1388ba361e4e60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueTrigger: {fileID: 179808635618827216}

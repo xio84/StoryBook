@@ -11,6 +11,7 @@ public class PlayerInventory : MonoBehaviour
     private bool stopExamine;
     private bool interactObject;
     private bool examining;
+    private bool talkNPC;
     private InventoryUI iUI;
     private Rigidbody rigidBody;
 
@@ -40,6 +41,7 @@ public class PlayerInventory : MonoBehaviour
         examineItem = Input.GetKeyDown(KeyCode.C);
         stopExamine = Input.GetKeyDown(KeyCode.Escape);
         interactObject = Input.GetKeyDown(KeyCode.E);
+        talkNPC = Input.GetKeyDown(KeyCode.T);
 
         if (interactObject && !Examining)
         {
@@ -53,6 +55,11 @@ public class PlayerInventory : MonoBehaviour
             {
                 Use();
             }
+        }
+
+        if (talkNPC && !Examining)
+        {
+            Talk();
         }
     }
 
@@ -112,6 +119,31 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
+    public void Talk()
+    {
+        // Get all objects, ordered by proximity
+        Collider[] targets = Physics.OverlapSphere(transform.position, interactRadius, interactable);
+        Collider[] orderedByProximity = targets.OrderBy(c => Vector3.Distance(transform.position, c.transform.position)).ToArray();
+
+        int i = 0; bool found = false;
+        IInteractables obj;
+        while (i < orderedByProximity.Length && !found)
+        {
+            Debug.Log(orderedByProximity[i].ToString());
+            obj = orderedByProximity[i].GetComponent<IInteractables>();
+            if (obj != null)
+            {
+                found = true;
+                obj.Interact("test");
+            }
+            i++;
+        }
+        if (!found)
+        {
+            Debug.Log("No NPCs!");
+        }
+    }
+
     // Use inventory object
     public void Use()
     {
@@ -128,6 +160,7 @@ public class PlayerInventory : MonoBehaviour
                 iObj = orderedByProximity[i].GetComponent<IInteractables>();
                 if (iObj != null)
                 {
+                    Debug.Log(iObj);
                     if (iObj.Interact(objects[cursor].id)) found = true;
                 }
                 i++;
