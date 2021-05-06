@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
 
     // Keypad Canvas Object
     public Canvas CanvasObject;
-    public GameObject m_renderer;
+    public SpriteRenderer m_sprite;
 
     // Start is called before the first frame update
     void Start()
@@ -85,20 +85,15 @@ public class Player : MonoBehaviour
         float fHorizontalVelocity = getRigidbody.velocity.x;
         if ((Mathf.Sign(horizontalInput)) != Mathf.Sign(fHorizontalVelocity)|| Mathf.Abs(fHorizontalVelocity)<maxSpeed) fHorizontalVelocity += horizontalInput*accModifier;
 
-        Quaternion rot = m_renderer.transform.localRotation;
-        rot.y += 180;
-        rot.y %= 360;
-        Vector3 rot3 = new Vector3(0, 180, 180);
-        Vector3 ls = m_renderer.transform.localScale;
-        ls.x *= -1;
+        
         if (fHorizontalVelocity < 0 && faceRight)
         {
-            m_renderer.transform.Rotate(rot3);
+            m_sprite.flipX = false;
             faceRight = !faceRight;
         }
         else if (fHorizontalVelocity > 0 && !faceRight)
         {
-            m_renderer.transform.Rotate(rot3);
+            m_sprite.flipX = true;
             faceRight = !faceRight;
         }
 
@@ -132,14 +127,14 @@ public class Player : MonoBehaviour
         if (jumpPressedRememberTime > 0f) { 
             if (groundRememberTime > 0f)
             {
-            getRigidbody.velocity = new Vector3(getRigidbody.velocity.x, jumpVelocity, getRigidbody.velocity.z);
+            getRigidbody.velocity = new Vector3(getRigidbody.velocity.x, jumpVelocity);
             jumpPressedRememberTime = 0f;
             groundRememberTime = 0f;
             
             } else 
             if (jumpLeft > 0)
             {
-                getRigidbody.velocity = new Vector3(getRigidbody.velocity.x, jumpVelocity, getRigidbody.velocity.z);
+                getRigidbody.velocity = new Vector3(getRigidbody.velocity.x, jumpVelocity);
                 jumpPressedRememberTime = 0f;
                 groundRememberTime = 0f;
                 jumpLeft--;

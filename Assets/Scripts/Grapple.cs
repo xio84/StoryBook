@@ -12,7 +12,8 @@ public class Grapple : MonoBehaviour
     private SpringJoint joint;
     private Vector3 grapplePoint;
     private Vector3 mousePos;
-    private Rigidbody getRigidbody = null, conBody=null;
+    private Rigidbody getRigidbody = null;
+    private Rigidbody conBody=null;
     
     private bool grapplePull;
     private float distanceFromPoint;
@@ -81,7 +82,7 @@ public class Grapple : MonoBehaviour
     {
         //Debug.Log("SHOT");
         RaycastHit hit;
-        if (Physics.Raycast(getRigidbody.position, (new Vector3(a.x,a.y,0) - getRigidbody.position).normalized, out hit, maxDistance, grabAble))
+        if (Physics.Raycast(getRigidbody.position, (new Vector3(a.x,a.y) - getRigidbody.position).normalized, out hit, maxDistance, grabAble))
         {
             grapplePoint = hit.point;
             conBody = hit.rigidbody;
