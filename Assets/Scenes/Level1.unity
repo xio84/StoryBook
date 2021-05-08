@@ -2058,7 +2058,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nameText: {fileID: 1305035880}
-  dialogueText: {fileID: 322473873}
   choice1Text: {fileID: 1389650830}
   choice2Text: {fileID: 1262170751}
   animator: {fileID: 1642936803}
