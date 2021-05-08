@@ -13,6 +13,7 @@ public class DialogueTrigger : MonoBehaviour
         if (pressurePuzzle.isOpen)
         {
             FindObjectOfType<DialogueManager>().StartDialogue(dialogue_after);
+            pressurePuzzle.OpenDoor();
         }
         else
         {

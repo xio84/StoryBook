@@ -43,8 +43,7 @@ public class PressurePuzzle : MonoBehaviour
         {
             if (key == answer)
             {
-                door.transform.position = new Vector3(door.transform.position.x, door.transform.position.y + (Time.deltaTime * 5));
-                isOpen = true;
+                OpenDoor();
             }
             else
             {
@@ -58,10 +57,15 @@ public class PressurePuzzle : MonoBehaviour
         {
             if (answer.Length == 3)
             {
-                door.transform.position = new Vector3(door.transform.position.x, door.transform.position.y + (Time.deltaTime * 5));
                 isOpen = true;
             }
         }
+    }
+
+    public void OpenDoor()
+    {
+        door.transform.position = new Vector3(door.transform.position.x, door.transform.position.y + 100);
+        isOpen = true;
     }
     
 }
