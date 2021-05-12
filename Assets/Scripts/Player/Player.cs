@@ -52,6 +52,17 @@ public class Player : MonoBehaviour
         if (canMove)
         {
             horizontalInput = Input.GetAxisRaw("Horizontal");
+            if (horizontalInput < 0 && faceRight)
+            {
+                m_sprite.flipX = false;
+                faceRight = !faceRight;
+            }
+            else if (horizontalInput > 0 && !faceRight)
+            {
+                m_sprite.flipX = true;
+                faceRight = !faceRight;
+            }
+
             jumpPressedRememberTime -= Time.deltaTime;
             groundRememberTime -= Time.deltaTime;
 
@@ -84,18 +95,6 @@ public class Player : MonoBehaviour
     {
         float fHorizontalVelocity = getRigidbody.velocity.x;
         if ((Mathf.Sign(horizontalInput)) != Mathf.Sign(fHorizontalVelocity)|| Mathf.Abs(fHorizontalVelocity)<maxSpeed) fHorizontalVelocity += horizontalInput*accModifier;
-
-        
-        if (fHorizontalVelocity < 0 && faceRight)
-        {
-            m_sprite.flipX = false;
-            faceRight = !faceRight;
-        }
-        else if (fHorizontalVelocity > 0 && !faceRight)
-        {
-            m_sprite.flipX = true;
-            faceRight = !faceRight;
-        }
 
         animator.SetFloat("Speed", Mathf.Abs(fHorizontalVelocity));
 
