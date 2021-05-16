@@ -5,9 +5,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+
     [SerializeField] public Transform groundCheckTransform = null;
     
-    [SerializeField] private LayerMask playerMask;
+    [SerializeField] private LayerMask ground;
     [SerializeField] private float groundRememberPeriod = 0.1f;
     [SerializeField] private float jumpPressedRememberPeriod = 0.1f;
     [SerializeField] private float jumpVelocity = 5f;
@@ -25,10 +26,12 @@ public class Player : MonoBehaviour
     //private bool jumpKeyUp;
     private float horizontalInput, groundRememberTime,jumpPressedRememberTime;
     private Rigidbody getRigidbody = null;
+    private Collider getCollider;
     //private int superJumpsRemaining;
     private int jumpLeft;
     private bool canMove;
-    private bool faceRight;
+    private bool faceLeft;
+    private float distToGround;
 
     // Keypad Canvas Object
     public Canvas CanvasObject;
@@ -37,13 +40,15 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        getCollider = GetComponent<Collider>();
         getRigidbody = GetComponent<Rigidbody>();
-
         animator = GetComponent<Animator>();
 
         CanvasObject.enabled = false;
         canMove = true;
-        faceRight = true;
+        faceLeft = true;
+
+        distToGround = getCollider.bounds.extents.y;
     }
 
     // Update is called once per frame
@@ -52,28 +57,44 @@ public class Player : MonoBehaviour
         if (canMove)
         {
             horizontalInput = Input.GetAxisRaw("Horizontal");
-            if (horizontalInput < 0 && faceRight)
+            animator.SetFloat("Speed", Mathf.Abs(horizontalInput));
+            if (horizontalInput < 0 && !faceLeft)
             {
                 m_sprite.flipX = false;
-                faceRight = !faceRight;
+                faceLeft = !faceLeft;
             }
-            else if (horizontalInput > 0 && !faceRight)
+            else if (horizontalInput > 0 && faceLeft)
             {
                 m_sprite.flipX = true;
-                faceRight = !faceRight;
+                faceLeft = !faceLeft;
             }
 
             jumpPressedRememberTime -= Time.deltaTime;
             groundRememberTime -= Time.deltaTime;
 
-            if (Physics.OverlapSphere(groundCheckTransform.position, 0.3f, playerMask).Length > 0)
+            if (Physics.Raycast(transform.position, -Vector3.up, distToGround + 0.1f))
             {
+                // Landing on the ground
+                animator.SetBool("IsJumping", false);
+                animator.SetBool("IsDoubleJumping", false);
                 groundRememberTime = groundRememberPeriod;
                 jumpLeft = 1;
             }
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                if (groundRememberTime > 0f)
+                {
+                    // First jump
+                    animator.SetBool("IsJumping", true);
+                    animator.SetBool("IsDoubleJumping", false);
+                }
+                else if (jumpLeft > 0)
+                {
+                    // Second jump
+                    animator.SetBool("IsJumping", false);
+                    animator.SetBool("IsDoubleJumping", true);
+                }
                 jumpPressedRememberTime = jumpPressedRememberPeriod;
             }
 
@@ -95,8 +116,6 @@ public class Player : MonoBehaviour
     {
         float fHorizontalVelocity = getRigidbody.velocity.x;
         if ((Mathf.Sign(horizontalInput)) != Mathf.Sign(fHorizontalVelocity)|| Mathf.Abs(fHorizontalVelocity)<maxSpeed) fHorizontalVelocity += horizontalInput*accModifier;
-
-        animator.SetFloat("Speed", Mathf.Abs(fHorizontalVelocity));
 
         if (!gameObject.GetComponent<Grapple>().isGrappling)
         {
@@ -126,13 +145,14 @@ public class Player : MonoBehaviour
         if (jumpPressedRememberTime > 0f) { 
             if (groundRememberTime > 0f)
             {
-            getRigidbody.velocity = new Vector3(getRigidbody.velocity.x, jumpVelocity);
-            jumpPressedRememberTime = 0f;
-            groundRememberTime = 0f;
-            
-            } else 
-            if (jumpLeft > 0)
+                // First jump
+                getRigidbody.velocity = new Vector3(getRigidbody.velocity.x, jumpVelocity);
+                jumpPressedRememberTime = 0f;
+                groundRememberTime = 0f;
+            } 
+            else if (jumpLeft > 0)
             {
+                // Second jump
                 getRigidbody.velocity = new Vector3(getRigidbody.velocity.x, jumpVelocity);
                 jumpPressedRememberTime = 0f;
                 groundRememberTime = 0f;
