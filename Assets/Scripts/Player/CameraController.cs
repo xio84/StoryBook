@@ -6,11 +6,13 @@ public class CameraController : MonoBehaviour
 {
     public GameObject player;
     public float smoothTime;
+    public Vector3 posOffset; // Camera positiion offset
     public List<Vector3> checkpoints;
 
     private Vector3 camPos;
     private bool kinematicX;
     private bool kinematicY;
+    private bool kinematicZ;
     private Vector3 velocity = Vector3.zero;
 
     // Start is called before the first frame update
@@ -19,8 +21,8 @@ public class CameraController : MonoBehaviour
         camPos = player.transform.position;
         kinematicX = false;
         kinematicY = false;
-        camPos.y += 1.8f;
-        camPos.z -= 4.8f;
+        kinematicZ = false;
+        camPos += posOffset;
         transform.position = camPos;
     }
 
@@ -29,11 +31,15 @@ public class CameraController : MonoBehaviour
     {
         if (!kinematicX)
         {
-            camPos.x = player.transform.position.x;
+            camPos.x = player.transform.position.x + posOffset.x;
         }
         if (!kinematicY)
         {
-            camPos.y = player.transform.position.y + 1.8f;
+            camPos.y = player.transform.position.y + posOffset.y;
+        }
+        if (!kinematicZ)
+        {
+            camPos.z = player.transform.position.z + posOffset.z;
         }
 
         // Move camera to target
@@ -56,6 +62,7 @@ public class CameraController : MonoBehaviour
             default:
                 kinematicX = false;
                 kinematicY = false;
+                kinematicZ = false;
                 break;
         }
     }

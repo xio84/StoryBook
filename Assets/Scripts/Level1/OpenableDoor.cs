@@ -2,23 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KeyRoomDoor : MonoBehaviour, IObjects
+public class OpenableDoor : MonoBehaviour, IObjects
 {
     public bool open;
     public GameObject pivot;
     private bool opened;
+    private bool closed;
+    private BoxCollider col;
+
     public Quaternion rotTarget;
     public Quaternion rotBegin;
     public float speed;
 
     public void Interact(GameObject player)
     {
-        open = true;
+        open = !open;
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        col = this.GetComponent<BoxCollider>();
+        opened = false;
+        closed = false;
         open = false;
         rotBegin = this.transform.localRotation;
     }
@@ -31,6 +37,24 @@ public class KeyRoomDoor : MonoBehaviour, IObjects
             if (!(transform.localRotation.eulerAngles.y < rotTarget.eulerAngles.y + 5 && transform.localRotation.eulerAngles.y > rotTarget.eulerAngles.y - 5))
             {
                 transform.RotateAround(pivot.transform.position, Vector3.up, Time.deltaTime * speed);
+                col.enabled = false;
+            } else
+            {
+                opened = true;
+                col.enabled = true;
+            }
+        }
+        if (!open && opened)
+        {
+            if (!(transform.localRotation.eulerAngles.y < rotBegin.eulerAngles.y + 5 && transform.localRotation.eulerAngles.y > rotBegin.eulerAngles.y - 5))
+            {
+                transform.RotateAround(pivot.transform.position, Vector3.down, Time.deltaTime * speed);
+                col.enabled = false;
+            }
+            else
+            {
+                opened = false;
+                col.enabled = true;
             }
         }
     }

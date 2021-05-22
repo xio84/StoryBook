@@ -15,6 +15,7 @@ public class PlayerInventory : MonoBehaviour
     private InventoryUI iUI;
     private Rigidbody rigidBody;
 
+    public GameManager GM;
     public LayerMask interactable;
     public GameObject inventoryUI;
     public List<Obtainable> objects;
@@ -37,7 +38,7 @@ public class PlayerInventory : MonoBehaviour
     void Update()
     {
         // Listen for key
-        useItem = Input.GetKeyDown(KeyCode.F);
+        // useItem = Input.GetKeyDown(KeyCode.F);
         examineItem = Input.GetKeyDown(KeyCode.C);
         stopExamine = Input.GetKeyDown(KeyCode.Escape);
         interactObject = Input.GetKeyDown(KeyCode.E);
@@ -49,13 +50,13 @@ public class PlayerInventory : MonoBehaviour
             Interact();
         }
 
-        if (useItem && !Examining)
+        /*if (useItem && !Examining)
         {
             if (objects.Count > 0)
             {
-                Use();
+                GM.ShowInventory();
             }
-        }
+        }*/
 
         if (talkNPC && !Examining)
         {
@@ -145,7 +146,7 @@ public class PlayerInventory : MonoBehaviour
     }
 
     // Use inventory object
-    public void Use()
+    public void Use(int cr)
     {
         // Get all objects, ordered by proximity
         Collider[] targets = Physics.OverlapSphere(transform.position, interactRadius, interactable);
@@ -161,13 +162,13 @@ public class PlayerInventory : MonoBehaviour
                 if (iObj != null)
                 {
                     Debug.Log(iObj);
-                    if (iObj.Interact(objects[cursor].id)) found = true;
+                    if (iObj.Interact(objects[cr].id)) found = true;
                 }
                 i++;
             }
             if (found)
             {
-                objects.RemoveAt(cursor);
+                objects.RemoveAt(cr);
                 Refresh();
             }
         }
