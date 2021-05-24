@@ -46,4 +46,9 @@ public class Obtainable : MonoBehaviour, IObjects
             }
         }
     }
+
+    public int Think()
+    {
+        return 0;
+    }
 }

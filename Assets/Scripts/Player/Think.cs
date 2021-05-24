@@ -29,7 +29,7 @@ public class Think : MonoBehaviour
     void Update()
     {
         Collider[] targets = Physics.OverlapSphere(transform.position, interactRadius, interactable);
-        if (targets.Length == 0 && show)
+        if (targets.Length == 0)
         {
             show = false;
         } else
@@ -39,20 +39,20 @@ public class Think : MonoBehaviour
                 targets = targets.OrderBy(c => Vector3.Distance(transform.position, c.transform.position)).ToArray();
             }
 
-            if (targets[0].GetComponent<IInteractables>() != null)
+            IThinkable iT = targets[0].GetComponent<IThinkable>();
+            if (iT != null)
             {
-                if (!show)
-                {
-                    ThinkFill.sprite = fKey;
-                    show = true;
+                switch (iT.Think()) {
+                    case 0:
+                        ThinkFill.sprite = eKey;
+                        break;
+                    case 1:
+                        ThinkFill.sprite = fKey;
+                        break;
+                    default:
+                        break;
                 }
-            } else if (targets[0].GetComponent<IObjects>() != null)
-            {
-                if (!show)
-                {
-                    ThinkFill.sprite = eKey;
-                    show = true;
-                }
+                show = true;
             } else
             {
                 show = false;

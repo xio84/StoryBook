@@ -59,9 +59,12 @@ public class GameManager : MonoBehaviour
 
     public void Equip(int cursor)
     {
-        pI.Switch(cursor);
-        pI.Use(cursor);
-        CloseInventory();
+        if (pI.objects.Count > cursor)
+        {
+            pI.Switch(cursor);
+            pI.Use(cursor);
+            CloseInventory();
+        }
     }
 
     public void CloseInventory()

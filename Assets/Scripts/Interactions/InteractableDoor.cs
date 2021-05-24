@@ -32,4 +32,9 @@ public class InteractableDoor : MonoBehaviour, IInteractables
             return false;
         }
     }
+
+    public int Think()
+    {
+        return 1;
+    }
 }

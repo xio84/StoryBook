@@ -7,7 +7,6 @@ public class OpenableDoor : MonoBehaviour, IObjects
     public bool open;
     public GameObject pivot;
     private bool opened;
-    private bool closed;
     private BoxCollider col;
 
     public Quaternion rotTarget;
@@ -24,7 +23,6 @@ public class OpenableDoor : MonoBehaviour, IObjects
     {
         col = this.GetComponent<BoxCollider>();
         opened = false;
-        closed = false;
         open = false;
         rotBegin = this.transform.localRotation;
     }
@@ -57,5 +55,10 @@ public class OpenableDoor : MonoBehaviour, IObjects
                 col.enabled = true;
             }
         }
+    }
+
+    public int Think()
+    {
+        return 0;
     }
 }
