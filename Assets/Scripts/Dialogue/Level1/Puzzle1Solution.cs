@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Puzzle1Solution : MonoBehaviour
 {
-    [SerializeField] private bool solved;
     private Vector3 velocity = Vector3.zero;
+    private Quaternion targetDeg;
+    private Quaternion solutionDeg;
     
+    public bool solved;
     public Transform[] children;
     public Vector3 rotSolution;
     public Vector3 threshold;
@@ -18,15 +20,21 @@ public class Puzzle1Solution : MonoBehaviour
     void Start()
     {
         solved = false;
+        targetDeg = transform.rotation;
+        solutionDeg = targetDeg;
+        targetDeg *= Quaternion.Euler(-90, 0, 0);
+        targetDeg *= Quaternion.Euler(0, -90, 0);
+        targetDeg *= Quaternion.Euler(0, 0, -90);
+        transform.rotation = targetDeg;
     }
 
     // Update is called once per frame
     void Update()
     {
-        bool checkX = transform.localEulerAngles.x < rotSolution.x + threshold.x && transform.localEulerAngles.x > rotSolution.x - threshold.x;
+        /*bool checkX = transform.localEulerAngles.x < rotSolution.x + threshold.x && transform.localEulerAngles.x > rotSolution.x - threshold.x;
         bool checkY = transform.localEulerAngles.y < rotSolution.y + threshold.y && transform.localEulerAngles.y > rotSolution.y - threshold.y;
-        bool checkZ = transform.localEulerAngles.z < rotSolution.z + threshold.z && transform.localEulerAngles.z > rotSolution.z - threshold.z;
-        if (checkX && checkY && checkZ)
+        bool checkZ = transform.localEulerAngles.z < rotSolution.z + threshold.z && transform.localEulerAngles.z > rotSolution.z - threshold.z;*/
+        if (solutionDeg == transform.rotation)
         {
             solved = true;
         }
@@ -40,34 +48,34 @@ public class Puzzle1Solution : MonoBehaviour
             }
             transform.localPosition = Vector3.SmoothDamp(transform.localPosition, finalPos, ref velocity, smoothTime);
         }
+        else
+        {
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetDeg, rotSpeed * Time.deltaTime);
+        }
     }
 
     public void Rotate(int index)
     {
         if (!solved)
         {
-            Vector3 eA = transform.localEulerAngles;
             switch (index)
             {
                 case 0:
                     // Rotate X
-                    eA.x += Time.deltaTime * rotSpeed;
-                    eA.x %= 360;
+                    targetDeg *= Quaternion.Euler(90, 0, 0);
                     break;
                 case 1:
-                    // Rotate X
-                    eA.y += Time.deltaTime * rotSpeed;
-                    eA.y %= 360;
+                    // Rotate Y
+                    targetDeg *= Quaternion.Euler(0, 90, 0);
                     break;
                 case 2:
-                    // Rotate X
-                    eA.z += Time.deltaTime * rotSpeed;
-                    eA.z %= 360;
+                    // Rotate Z
+                    targetDeg *= Quaternion.Euler(0, 0, 90);
                     break;
                 default:
                     break;
             }
-            transform.localEulerAngles = eA;
+            Debug.Log(targetDeg + " " + solutionDeg);
         }
     }
 }

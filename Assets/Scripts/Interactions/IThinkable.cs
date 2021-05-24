@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IInteractables : IThinkable
+public interface IThinkable
 {
-    bool Interact(string key);
+    // 0 = Objects/E, 1 = Interactable/F
+    int Think();
 }

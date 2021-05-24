@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q) && !pause)
+        if ((Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.F)) && !pause)
         {
             if (iUIshow)
             {
@@ -59,8 +59,12 @@ public class GameManager : MonoBehaviour
 
     public void Equip(int cursor)
     {
-        pI.Switch(cursor);
-        CloseInventory();
+        if (pI.objects.Count > cursor)
+        {
+            pI.Switch(cursor);
+            pI.Use(cursor);
+            CloseInventory();
+        }
     }
 
     public void CloseInventory()

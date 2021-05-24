@@ -61,9 +61,12 @@ public class LiftButton : MonoBehaviour, IObjects, IInteractables
 
     public void Interact(GameObject player)
     {
-        Debug.Log("Going Down/up");
-        p = player;
-        goDown = !goDown;
+        if (!locked)
+        {
+            Debug.Log("Going Down/up");
+            p = player;
+            goDown = !goDown;
+        }
     }
 
     public bool Interact(string key)
@@ -78,6 +81,17 @@ public class LiftButton : MonoBehaviour, IObjects, IInteractables
         else
         {
             return false;
+        }
+    }
+
+    public int Think()
+    {
+        if (locked)
+        {
+            return 1;
+        } else
+        {
+            return 0;
         }
     }
 }

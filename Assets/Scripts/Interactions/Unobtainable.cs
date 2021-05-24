@@ -51,4 +51,9 @@ public class Unobtainable : MonoBehaviour, IObjects
         p = player;
         StartExamine();
     }
+
+    public int Think()
+    {
+        return 0;
+    }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractableNPC : MonoBehaviour, IInteractables
+public class InteractableNPC : MonoBehaviour, IObjects
 {
 
     public DialogueTrigger dialogueTrigger;
@@ -19,10 +19,14 @@ public class InteractableNPC : MonoBehaviour, IInteractables
         
     }
 
-    bool IInteractables.Interact(string key)
+    void IObjects.Interact(GameObject player)
     {
         dialogueTrigger.TriggerDialogue();
         Debug.Log("interacted");
-        return true;
+    }
+
+    public int Think()
+    {
+        return 0;
     }
 }
