@@ -2,37 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Puzzle1Press : MonoBehaviour
+public class Puzzle1Press : MonoBehaviour, IObjects
 {
-    private bool trigger;
     public Puzzle1Solution sol;
     public int index;
-    private void Start()
-    {
-        trigger = false;
-    }
 
     private void Update()
     {
-        if (trigger)
+        if (sol.solved)
         {
-            sol.Rotate(index);
+            GetComponent<Collider>().enabled = false;
         }
     }
-    // Start is called before the first frame update
-    private void OnTriggerEnter(Collider other)
+
+    public void Interact(GameObject player)
     {
-        if (other.gameObject.GetComponent<Player>() != null)
-        {
-            trigger = true;
-        }   
+        sol.Rotate(index);
     }
 
-    private void OnTriggerExit(Collider other)
+    public int Think()
     {
-        if (other.gameObject.GetComponent<Player>() != null)
+        if (sol.solved)
         {
-            trigger = false;
+            return -1;
+        } else
+        {
+            return 0;
         }
     }
 }
