@@ -2,25 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OpenableDoor : MonoBehaviour, IObjects
+public class LockedDoor : MonoBehaviour, IInteractables, IObjects
 {
+    public bool locked;
     public bool open;
     public GameObject pivot;
+
     private bool opened;
     private BoxCollider col;
 
+    public string keyID;
     public Quaternion rotTarget;
     public Quaternion rotBegin;
     public float speed;
 
     public void Interact(GameObject player)
     {
+        if (!locked)
         open = !open;
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        locked = true;
         col = this.GetComponent<BoxCollider>();
         opened = false;
         open = false;
@@ -36,7 +41,8 @@ public class OpenableDoor : MonoBehaviour, IObjects
             {
                 transform.RotateAround(pivot.transform.position, Vector3.up, Time.deltaTime * speed);
                 col.enabled = false;
-            } else
+            }
+            else
             {
                 opened = true;
             }
@@ -58,6 +64,24 @@ public class OpenableDoor : MonoBehaviour, IObjects
 
     public int Think()
     {
-        return 0;
+        if (locked)
+        {
+            return 1;
+        } else
+        {
+            return 0;
+        }
+    }
+
+    public bool Interact(string key)
+    {
+        if (keyID == key)
+        {
+            locked = false;
+            return true;
+        } else
+        {
+            return false;
+        }
     }
 }

@@ -11,7 +11,7 @@ public class Puzzle1Solution : MonoBehaviour
     public bool solved;
     public Transform[] children;
     public Vector3 rotSolution;
-    public Vector3 threshold;
+    public float threshold;
     public Vector3 finalPos;
     public float smoothTime;
     public float rotSpeed;
@@ -31,10 +31,11 @@ public class Puzzle1Solution : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*bool checkX = transform.localEulerAngles.x < rotSolution.x + threshold.x && transform.localEulerAngles.x > rotSolution.x - threshold.x;
-        bool checkY = transform.localEulerAngles.y < rotSolution.y + threshold.y && transform.localEulerAngles.y > rotSolution.y - threshold.y;
-        bool checkZ = transform.localEulerAngles.z < rotSolution.z + threshold.z && transform.localEulerAngles.z > rotSolution.z - threshold.z;*/
-        if (solutionDeg == transform.rotation)
+        /*bool checkX = transform.localEulerAngles.x < targetDeg.eulerAngles.x + threshold.x && transform.localEulerAngles.x > targetDeg.eulerAngles.x - threshold.x;
+        bool checkY = transform.localEulerAngles.y < targetDeg.eulerAngles.y + threshold.y && transform.localEulerAngles.y > targetDeg.eulerAngles.y - threshold.y;
+        bool checkZ = transform.localEulerAngles.z < targetDeg.eulerAngles.z + threshold.z && transform.localEulerAngles.z > targetDeg.eulerAngles.z - threshold.z;*/
+        float angle = Quaternion.Angle(transform.rotation, solutionDeg);
+        if (angle <= threshold)
         {
             solved = true;
         }
@@ -44,7 +45,7 @@ public class Puzzle1Solution : MonoBehaviour
             {
                 Vector3 target = c.localPosition;
                 target.z = 0;
-                c.localPosition = Vector3.SmoothDamp(c.localPosition, target, ref velocity, smoothTime);
+                c.localPosition = target;
             }
             transform.localPosition = Vector3.SmoothDamp(transform.localPosition, finalPos, ref velocity, smoothTime);
         }
