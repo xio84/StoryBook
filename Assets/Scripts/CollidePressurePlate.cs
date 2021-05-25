@@ -24,14 +24,21 @@ public class CollidePressurePlate : MonoBehaviour
     // Start is called before the first frame update
     private void OnTriggerEnter(Collider other)
     {
-        if (id == "0")
+        if (other.gameObject.tag == "Player")
         {
-            pressurePlate.GetComponent<PressurePuzzle>().resetAnswer();
+            if (id == "0")
+            {
+                pressurePlate.GetComponent<PressurePuzzle>().resetAnswer();
+            }
+            else
+            {
+                pressurePlate.GetComponent<PressurePuzzle>().addAnswer(id);
+                Debug.Log("id: " + id + "Pressed");
+            }
         }
         else
         {
-            pressurePlate.GetComponent<PressurePuzzle>().addAnswer(id);
-            Debug.Log("id: " + id + "Pressed");
+            // do nothing
         }
         
         // door.transform.position = new Vector3(doorPos.x,doorPos.y+doorLift,0);

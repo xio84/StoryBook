@@ -64,6 +64,7 @@ public class PressurePuzzle : MonoBehaviour
 
     public void OpenDoor()
     {
+        Debug.Log("In open door");
         door.transform.position = new Vector3(door.transform.position.x, door.transform.position.y + 100);
         isOpen = true;
     }

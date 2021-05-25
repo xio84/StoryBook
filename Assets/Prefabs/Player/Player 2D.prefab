@@ -473,7 +473,7 @@ GameObject:
   - component: {fileID: 8815469544402151486}
   m_Layer: 8
   m_Name: Player 2D
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -487,7 +487,7 @@ Transform:
   m_GameObject: {fileID: 8815469544402151474}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 26.04, y: -7.69, z: 0}
-  m_LocalScale: {x: 1.55, y: 1.55, z: 1.55}
+  m_LocalScale: {x: 1.6, y: 1.6, z: 1.6}
   m_Children:
   - {fileID: 8815469544184767724}
   - {fileID: 8815469545848819600}
@@ -613,7 +613,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: {fileID: 0}
-  outOfBoundsYBot: -40
+  outOfBoundsYBot: -50
 --- !u!114 &3475114792416240191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -628,7 +628,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ThinkBox: {fileID: 245183813}
   ThinkFill: {fileID: 2131323154}
-  fadeSpeed: 2
+  fadeSpeed: 10
   eKey: {fileID: 21300000, guid: 00565829e3ae07344bce12067a968a1a, type: 3}
   fKey: {fileID: 21300000, guid: 8f423d2da069a394b8967d32cc2e2de8, type: 3}
   show: 0
