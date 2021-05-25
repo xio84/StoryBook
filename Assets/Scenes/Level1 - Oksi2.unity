@@ -10846,6 +10846,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1788827235}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &773978382
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 773978383}
+  m_Layer: 0
+  m_Name: pivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &773978383
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 773978382}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 32.8, y: 6.97, z: 9.16}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1175346205764643013}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &774846571
 GameObject:
   m_ObjectHideFlags: 0
@@ -14054,6 +14084,11 @@ PrefabInstance:
       propertyPath: level
       value: 
       objectReference: {fileID: 1731795405}
+    - target: {fileID: 5041402471629104383, guid: 87ed6ad7106759a4f83611997d70e0a0,
+        type: 3}
+      propertyPath: outOfBoundsYBot
+      value: -50
+      objectReference: {fileID: 0}
     - target: {fileID: 8815469544402151432, guid: 87ed6ad7106759a4f83611997d70e0a0,
         type: 3}
       propertyPath: inventoryUI
@@ -14082,12 +14117,12 @@ PrefabInstance:
     - target: {fileID: 8815469544402151437, guid: 87ed6ad7106759a4f83611997d70e0a0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.666
+      value: 12.56
       objectReference: {fileID: 0}
     - target: {fileID: 8815469544402151437, guid: 87ed6ad7106759a4f83611997d70e0a0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.902
+      value: -27.53
       objectReference: {fileID: 0}
     - target: {fileID: 8815469544402151437, guid: 87ed6ad7106759a4f83611997d70e0a0,
         type: 3}
@@ -16936,6 +16971,28 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!1 &1173039530 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9211954599071599943, guid: 4e7ee2ad5819e9145aee346d7942b1a9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1892674910}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &1173039531
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173039530}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &1175490353
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21683,7 +21740,7 @@ GameObject:
   - component: {fileID: 1416177167}
   - component: {fileID: 1416177169}
   - component: {fileID: 1416177168}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Tombol Puzzle (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26644,6 +26701,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8f27f5b214ed4640b8e4fec342d496e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetScene: Level1 - Oksi2
   Player: {fileID: 987375915}
   inventoryUI: {fileID: 1203612453}
   pauseMenu: {fileID: 757724119}
@@ -28249,7 +28307,7 @@ GameObject:
   - component: {fileID: 1834517600}
   - component: {fileID: 1834517602}
   - component: {fileID: 1834517601}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Tombol Puzzle (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29078,6 +29136,23 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1591697411}
     m_Modifications:
+    - target: {fileID: 808321525, guid: 4e7ee2ad5819e9145aee346d7942b1a9, type: 3}
+      propertyPath: m_Size.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 808321525, guid: 4e7ee2ad5819e9145aee346d7942b1a9, type: 3}
+      propertyPath: m_Size.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 808321525, guid: 4e7ee2ad5819e9145aee346d7942b1a9, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: fec78f9e6b9e52a49b50ad70bb56a614,
+        type: 3}
+    - target: {fileID: 808321525, guid: 4e7ee2ad5819e9145aee346d7942b1a9, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 179808635618827216, guid: 4e7ee2ad5819e9145aee346d7942b1a9,
         type: 3}
       propertyPath: pressurePuzzle
@@ -29091,7 +29166,7 @@ PrefabInstance:
     - target: {fileID: 9211954599071599937, guid: 4e7ee2ad5819e9145aee346d7942b1a9,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9211954599071599937, guid: 4e7ee2ad5819e9145aee346d7942b1a9,
         type: 3}
@@ -29106,7 +29181,7 @@ PrefabInstance:
     - target: {fileID: 9211954599071599937, guid: 4e7ee2ad5819e9145aee346d7942b1a9,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.46
       objectReference: {fileID: 0}
     - target: {fileID: 9211954599071599937, guid: 4e7ee2ad5819e9145aee346d7942b1a9,
         type: 3}
@@ -29142,6 +29217,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9211954599071599938, guid: 4e7ee2ad5819e9145aee346d7942b1a9,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9211954599071599943, guid: 4e7ee2ad5819e9145aee346d7942b1a9,
         type: 3}
@@ -37744,6 +37824,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 543450651675502396}
+  - component: {fileID: 919132147957300616}
+  - component: {fileID: 919132147957300615}
   m_Layer: 0
   m_Name: Lift model
   m_TagString: Untagged
@@ -37751,6 +37833,35 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!65 &919132147957300615
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132147957300614}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 421.95297, y: 33.55558, z: 354.6072}
+  m_Center: {x: 130.41074, y: 685.16925, z: -2.0689642}
+--- !u!54 &919132147957300616
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132147957300614}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &919132148305167365
 GameObject:
   m_ObjectHideFlags: 0
@@ -38994,7 +39105,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -5.200002, z: -2.5900002}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 773978383}
   m_Father: {fileID: 850857543}
   m_RootOrder: 231
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -59285,7 +59397,7 @@ GameObject:
   - component: {fileID: 4669738696810104108}
   - component: {fileID: 4669738696810104110}
   - component: {fileID: 4669738696810104109}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Tombol Puzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69838,13 +69950,62 @@ GameObject:
   - component: {fileID: 1175346205764643013}
   - component: {fileID: 1034508959004800488}
   - component: {fileID: 7350785767970903360}
-  m_Layer: 0
-  m_Name: group_Pintu_garden:polySurface4
+  - component: {fileID: 6458651024811955089}
+  - component: {fileID: 6458651024811955088}
+  - component: {fileID: 6458651024811955087}
+  m_Layer: 9
+  m_Name: Pintu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6458651024811955087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6458651024811955086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 593c4dc1caf332942b9d2352874f4ae6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  open: 0
+  pivot: {fileID: 773978382}
+  rotTarget: {x: 0, y: -0.70710677, z: 0, w: 0.70710677}
+  rotBegin: {x: 0, y: 0, z: 0, w: 0}
+  speed: 10
+--- !u!65 &6458651024811955088
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6458651024811955086}
+  m_Material: {fileID: 13400000, guid: e699127f7d001be419a62019f641697e, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.007419586, y: 3.752956, z: 1.9429002}
+  m_Center: {x: 32.82065, y: 7.1131277, z: 8.345386}
+--- !u!54 &6458651024811955089
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6458651024811955086}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!33 &6459243599386755971
 MeshFilter:
   m_ObjectHideFlags: 0

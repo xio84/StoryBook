@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     private bool iUIshow;
     private bool pause;
 
+    public string targetScene;
     public GameObject Player;
     public GameObject inventoryUI;
     public GameObject pauseMenu;
@@ -54,7 +55,7 @@ public class GameManager : MonoBehaviour
 
     public void Death()
     {
-        SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene(targetScene);
     }
 
     public void Equip(int cursor)
