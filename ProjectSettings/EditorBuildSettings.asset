@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 75aa71ba521a8724cbd48c88ad818b51
+  - enabled: 1
+    path: Assets/Scenes/IntroCutscene.unity
+    guid: 6bbef1ff2d76839459fa64a060b465a5
+  - enabled: 1
+    path: Assets/Scenes/Level1 - FerdyRemix.unity
+    guid: c243a7941a9edd647aede96291525039
   m_configObjects: {}
