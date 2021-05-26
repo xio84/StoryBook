@@ -45,14 +45,16 @@ public class Think : MonoBehaviour
                 switch (iT.Think()) {
                     case 0:
                         ThinkFill.sprite = eKey;
+                        show = true;
                         break;
                     case 1:
                         ThinkFill.sprite = fKey;
+                        show = true;
                         break;
                     default:
+                        show = false;
                         break;
                 }
-                show = true;
             } else
             {
                 show = false;

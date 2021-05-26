@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,7 +9,6 @@ public class Puzzle1Solution : MonoBehaviour
     private Quaternion solutionDeg;
     
     public bool solved;
-    public Transform[] children;
     public Vector3 rotSolution;
     public float threshold;
     public Vector3 finalPos;
@@ -41,7 +40,7 @@ public class Puzzle1Solution : MonoBehaviour
         }
         if (solved)
         {
-            foreach (Transform c in children)
+            foreach (Transform c in transform)
             {
                 Vector3 target = c.localPosition;
                 target.z = 0;
@@ -76,7 +75,6 @@ public class Puzzle1Solution : MonoBehaviour
                 default:
                     break;
             }
-            Debug.Log(targetDeg + " " + solutionDeg);
         }
     }
 }
