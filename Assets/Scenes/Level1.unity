@@ -1993,7 +1993,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &69599349
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8919,7 +8919,7 @@ MonoBehaviour:
   open: 0
   pivot: {fileID: 536807095}
   keyID: gardenKey
-  rotTarget: {x: 0, y: 0.70710677, z: 0, w: 0.70710677}
+  rotTarget: {x: 0, y: -0.70710677, z: 0, w: 0.70710677}
   rotBegin: {x: 0, y: 0, z: 0, w: 0}
   speed: 30
 --- !u!65 &340288773
@@ -10997,7 +10997,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &413104993
 RectTransform:
   m_ObjectHideFlags: 0
@@ -26850,7 +26850,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: liftKey
-  desc: Some Key
+  desc: A key for a machine of sorts...
   oName: 
   location: Clocktower
   picture: {fileID: 21300000, guid: 283575e5d356190419a129e94aa66055, type: 3}
