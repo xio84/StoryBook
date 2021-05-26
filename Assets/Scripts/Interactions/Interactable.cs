@@ -15,7 +15,6 @@ public class Interactable : MonoBehaviour
 
     private void StartExamine()
     {
-        Debug.Log("Examining "+this.name);
         setInactive();
         isExamine = true;
         Instantiate(this.gameObject,new Vector3 (mainCam.transform.position.x, mainCam.transform.position.y,mainCam.transform.position.z+5), Quaternion.identity, mainCam.transform);
@@ -32,7 +31,6 @@ public class Interactable : MonoBehaviour
 
     private void EndExamine()
     {
-        Debug.Log("Examining " + this.name);
         setActive();
         int i = 0;
         while(i< mainCam.transform.childCount)

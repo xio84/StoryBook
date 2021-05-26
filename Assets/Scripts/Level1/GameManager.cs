@@ -39,8 +39,10 @@ public class GameManager : MonoBehaviour
             }
             iUIshow = !iUIshow;
         }
-        else if (Input.GetKeyDown(KeyCode.Escape) && !iUIshow)
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
+            iUIshow = false;
+            CloseInventory();
             if (pause)
             {
                 Pause();

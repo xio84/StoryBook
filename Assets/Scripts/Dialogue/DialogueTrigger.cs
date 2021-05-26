@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour
 {
+    public Dialogue giftDialogue;
     public Dialogue dialogue_before;
     public Dialogue dialogue_after;
     public PressurePuzzle pressurePuzzle;
+    public UnopenableDoor door;
 
     public void TriggerDialogue()
     {
         if (pressurePuzzle.isOpen)
         {
-            pressurePuzzle.OpenDoor();
+            door.Open();
             FindObjectOfType<DialogueManager>().StartDialogue(dialogue_after);
         }
         else
@@ -21,6 +23,12 @@ public class DialogueTrigger : MonoBehaviour
         }
         
     }
+
+    public void TriggerGift()
+    {
+        FindObjectOfType<DialogueManager>().StartDialogue(giftDialogue);
+    }
+
     public void Choice1()
     {
         //FindObjectOfType<DialogueManager>().currSentence.itemId;

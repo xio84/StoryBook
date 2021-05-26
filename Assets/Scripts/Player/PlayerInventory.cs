@@ -46,7 +46,6 @@ public class PlayerInventory : MonoBehaviour
 
         if (interactObject && !Examining)
         {
-            Debug.Log("Collecting...");
             Interact();
         }
 
@@ -130,7 +129,6 @@ public class PlayerInventory : MonoBehaviour
         IInteractables obj;
         while (i < orderedByProximity.Length && !found)
         {
-            Debug.Log(orderedByProximity[i].ToString());
             obj = orderedByProximity[i].GetComponent<IInteractables>();
             if (obj != null)
             {
@@ -161,7 +159,6 @@ public class PlayerInventory : MonoBehaviour
                 iObj = orderedByProximity[i].GetComponent<IInteractables>();
                 if (iObj != null)
                 {
-                    Debug.Log(iObj);
                     if (iObj.Interact(objects[cr].id)) found = true;
                 }
                 i++;
@@ -185,7 +182,6 @@ public class PlayerInventory : MonoBehaviour
         IObjects obj;
         while (i < orderedByProximity.Length && !found)
         {
-            Debug.Log(orderedByProximity[i].ToString());
             obj = orderedByProximity[i].GetComponent<IObjects>();
             if (obj != null)
             {

@@ -6559,6 +6559,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BlueKey
       objectReference: {fileID: 0}
+    - target: {fileID: 1369614593108606354, guid: dfe5bd37f27ce9b409693bb45468eed1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfe5bd37f27ce9b409693bb45468eed1, type: 3}
 --- !u!1 &432677250
@@ -8601,7 +8606,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &580566142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9443,7 +9448,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &600155952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10041,7 +10046,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &683860568
 Transform:
   m_ObjectHideFlags: 0
@@ -10604,6 +10609,11 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1731795405}
+    - target: {fileID: 7770885142741978563, guid: 22b64d1cafffd954d94666b30aeef144,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7770885142992294933, guid: 22b64d1cafffd954d94666b30aeef144,
         type: 3}
       propertyPath: m_Type
@@ -10766,6 +10776,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameplayUI
       objectReference: {fileID: 0}
+    - target: {fileID: 7770885143471964175, guid: 22b64d1cafffd954d94666b30aeef144,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7770885143521755385, guid: 22b64d1cafffd954d94666b30aeef144,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -10841,7 +10856,7 @@ PrefabInstance:
     - target: {fileID: 8025058320773433211, guid: 22b64d1cafffd954d94666b30aeef144,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8103556079482972144, guid: 22b64d1cafffd954d94666b30aeef144,
         type: 3}
@@ -14210,6 +14225,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player 2D
+      objectReference: {fileID: 0}
+    - target: {fileID: 8815469544402151474, guid: 87ed6ad7106759a4f83611997d70e0a0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87ed6ad7106759a4f83611997d70e0a0, type: 3}
@@ -24376,7 +24396,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1568272449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25103,7 +25123,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1591697411
 Transform:
   m_ObjectHideFlags: 0
@@ -26825,7 +26845,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1731795404
 Transform:
   m_ObjectHideFlags: 0
@@ -28927,7 +28947,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &1870231591
 Light:
   m_ObjectHideFlags: 0
@@ -32424,7 +32444,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2080033581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44709,13 +44729,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   solved: 0
-  children:
-  - {fileID: 1962400139183019802}
-  - {fileID: 1962400140826504489}
-  - {fileID: 1962400140695750957}
-  - {fileID: 1962400140735138449}
   rotSolution: {x: 15, y: 0, z: 0}
-  threshold: {x: 10, y: 10, z: 10}
+  threshold: 0
   finalPos: {x: 15, y: -7, z: 0}
   smoothTime: 0.25
   rotSpeed: 60
@@ -76177,6 +76192,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Main Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 7422965528225256774, guid: 75dedebe8d7e66c4aa1dc043362366b2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7422965528225256794, guid: 75dedebe8d7e66c4aa1dc043362366b2,
         type: 3}
