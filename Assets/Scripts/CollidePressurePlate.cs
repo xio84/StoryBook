@@ -9,6 +9,8 @@ public class CollidePressurePlate : MonoBehaviour
     private Vector3 doorPos;
     [SerializeField] private float doorLift;
     [SerializeField] GameObject pressurePlate;
+    public Material grass;
+    public GameObject light;
     public bool open;
     public float start, stop;
     
@@ -33,6 +35,7 @@ public class CollidePressurePlate : MonoBehaviour
             else
             {
                 pressurePlate.GetComponent<PressurePuzzle>().addAnswer(id);
+                light.GetComponent<MeshRenderer>().material = grass;
                 Debug.Log("id: " + id + "Pressed");
             }
         }
