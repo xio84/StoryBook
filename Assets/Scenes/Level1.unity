@@ -18709,6 +18709,11 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Equip
       objectReference: {fileID: 0}
+    - target: {fileID: 3723963479216373519, guid: 22b64d1cafffd954d94666b30aeef144,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3929415202164819232, guid: 22b64d1cafffd954d94666b30aeef144,
         type: 3}
       propertyPath: m_IsActive
@@ -44943,12 +44948,12 @@ PrefabInstance:
     - target: {fileID: 8815469544402151437, guid: 87ed6ad7106759a4f83611997d70e0a0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 30.94
+      value: -6.19
       objectReference: {fileID: 0}
     - target: {fileID: 8815469544402151437, guid: 87ed6ad7106759a4f83611997d70e0a0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -41.02
+      value: -2.55
       objectReference: {fileID: 0}
     - target: {fileID: 8815469544402151437, guid: 87ed6ad7106759a4f83611997d70e0a0,
         type: 3}
